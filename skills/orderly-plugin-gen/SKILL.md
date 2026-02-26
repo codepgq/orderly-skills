@@ -1,34 +1,34 @@
 ---
 name: orderly-plugin-gen
-description: Generate Orderly SDK plugin scaffolding with unique ID, registration boilerplate, and typed interceptors. Use when the user mentions creating, developing, registering, implementing, or generating a plugin (e.g. '创建一个插件', '开发一个插件', '注册一个插件', '实现一个插件', '生成一个插件', 'create a plugin', 'generate a plugin').
+description: Generate Orderly SDK plugin scaffolding with unique ID, registration boilerplate, and typed interceptors. Use when the user mentions creating, developing, registering, implementing, or generating a plugin (e.g. '创建一个插件', '生成一个插件', 'create a plugin', 'generate a plugin', 'develop a plugin', 'register a plugin', 'implement a plugin', 'build a plugin', 'add a plugin', 'scaffold a plugin', 'new plugin').
 ---
 
 # Orderly Plugin Generator
 
-在 Orderly SDK monorepo 中快速生成插件项目骨架。
+Quickly generate plugin project scaffolding in the Orderly SDK monorepo.
 
 ## Trigger
 
-当用户消息包含以下关键词时，**主动询问**是否需要使用本 Skill 生成插件模板：
+When the user's message contains the following keywords, **proactively ask** whether to use this Skill to generate a plugin template:
 
 - 创建一个插件 / 开发一个插件 / 注册一个插件 / 实现一个插件 / 生成一个插件
 - create a plugin / generate a plugin / develop a plugin / register a plugin
 
-询问示例："检测到您想创建 Orderly 插件，是否使用 orderly-plugin-gen 脚手架来生成模板？"
+Example prompt: "Detected that you want to create an Orderly plugin. Would you like to use the orderly-plugin-gen scaffold to generate a template?"
 
 ## Workflow
 
-### Step 1: 收集信息
+### Step 1: Gather information
 
-向用户询问以下信息（使用 AskQuestion 工具）：
+Ask the user for the following (using the AskQuestion tool):
 
-1. **插件名称** (必填): 如 `orderbook-flash`、`pnl-card`。只允许小写字母、数字和连字符。
-2. **插件类型** (必填): `widget` / `page` / `layout`
-3. **存放路径** (可选): 插件目录的父路径，默认为当前项目的 `packages/` 目录。
+1. **Plugin name** (required): e.g. `orderbook-flash`, `pnl-card`. Only lowercase letters, numbers, and hyphens are allowed.
+2. **Plugin type** (required): `widget` / `page` / `layout`
+3. **Output path** (optional): Parent path for the plugin directory. Defaults to the current project's `packages/` directory.
 
-### Step 2: 执行脚本
+### Step 2: Run the script
 
-使用 Shell 工具运行生成脚本（需要 Node.js >=20.19.0）：
+Run the generation script with the Shell tool (Node.js >=20.19.0 required):
 
 ```bash
 node ~/.cursor/skills/orderly-plugin-gen/scripts/create-plugin.mjs \
@@ -37,16 +37,16 @@ node ~/.cursor/skills/orderly-plugin-gen/scripts/create-plugin.mjs \
   --path <absolute-parent-path>
 ```
 
-### Step 3: 输出结果
+### Step 3: Report results
 
-脚本执行后，向用户报告：
+After the script runs, report to the user:
 
-1. 生成的插件 ID
-2. 创建的文件列表
-3. 后续步骤提示：
-   - 运行 `pnpm install` 安装依赖
-   - 编辑 `src/index.tsx` 添加业务逻辑
-   - 在宿主应用中通过 `OrderlyProvider` 的 `plugins` 属性注册插件
+1. The generated plugin ID
+2. The list of created files
+3. Follow-up steps:
+   - Run `pnpm install` to install dependencies
+   - Edit `src/index.tsx` to add business logic
+   - Register the plugin in the host app via the `plugins` prop of `OrderlyProvider`
 
 ## Generated Structure
 
